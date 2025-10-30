@@ -9,6 +9,7 @@ A API é responsável pelo gerenciamento de clientes, barbeiros, serviços e age
 ## 📄 Documentação do banco de dados
 
  [Análise de Requisitos](https://github.com/gabrielribeirofsouza/back-end-systemBarber/blob/main/An%C3%A1lise%20de%20Requisitos%20-%20systemBarber.pdf)  
+ [Baixar PDF](https://github.com/gabrielribeirofsouza/back-end-systemBarber/raw/main/An%C3%A1lise%20de%20Requisitos%20-%20systemBarber.pdf)
 
 
 
