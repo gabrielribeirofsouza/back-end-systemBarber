@@ -1,8 +1,6 @@
 # 💈 SystemBarber - API Back-End
 
 O **SystemBarber** é a API back-end de um sistema de agendamento para barbearias.  
-Este projeto foi desenvolvido com **Java + Spring Boot**, utilizando **MySQL** como banco de dados relacional.  
-A API é responsável pelo gerenciamento de clientes, barbeiros, serviços e agendamentos.
 
 ---
 
@@ -13,10 +11,35 @@ A API é responsável pelo gerenciamento de clientes, barbeiros, serviços e age
 
 
 
-## 🧩 Endpoints Principais 
-Método	Rota	Descrição
-GET	/clientes	Lista todos os clientes
-GET	/barbeiros	Lista todos os barbeiros
-GET	/servicos	Lista os serviços disponíveis
-POST	/agendamentos	Cria um novo agendamento
-DELETE	/agendamentos/{id}	Remove um agendamento
+## ⚙️ Tecnologias Utilizadas
+
+- **Node.js** – Ambiente de execução JavaScript
+- **Express.js** – Framework para criação de rotas e middlewares
+- **MySQL** – Banco de dados relacional para persistência das informações
+- **bcrypt** – Criptografia de senhas para segurança do usuário
+- **cors** – Controle de acesso entre domínios
+- **dotenv** – Gerenciamento de variáveis de ambiente
+- **uuid** – Geração de identificadores únicos
+- **nodemon** – Ambiente de desenvolvimento com auto reload
+
+---
+
+## 🚀 Funcionalidades Principais
+
+- **Gerenciamento de Usuários:** cadastro, login com validação e criptografia de senha.  
+- **CRUD de Serviços:** criação, listagem, atualização e exclusão de serviços oferecidos.  
+- **CRUD de Produtos:** controle completo do catálogo de produtos disponíveis.  
+- **Agendamento de Horários:** estrutura para controle de agenda da barbearia.  
+- **Integração com Front-end React:** comunicação via API REST padronizada e eficiente.
+
+- ## 🔐 Boas Práticas Implementadas
+
+- ✅ **Segurança de dados**: uso de `bcrypt` para armazenar senhas de forma criptografada.
+- ✅ **JSON Web Token (JWT)** para autenticação segura entre cliente e servidor.
+- ✅ **Tratamento de erros padronizado**: respostas consistentes da API para o front-end.  
+- ✅ **Variáveis de ambiente protegidas** com `dotenv`.    
+- ✅ **Rotas separadas por contexto** (usuários, serviços, produtos, agenda).  
+- ✅ **Facilidade de manutenção e escalabilidade**, permitindo adicionar novas funcionalidades com facilidade.  
+- ✅ **Mensagens de retorno claras** para o cliente (sucesso, erro, validação).  
+
+---
