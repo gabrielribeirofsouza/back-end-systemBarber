@@ -8,7 +8,7 @@ O **SystemBarber** é a API back-end de um sistema de agendamento para barbearia
 
  [Análise de Requisitos.pdf - Download](https://github.com/gabrielribeirofsouza/back-end-systemBarber/raw/main/An%C3%A1lise%20de%20Requisitos%20-%20systemBarber.pdf)
 
-
+[Modelo lógico.pdf - Download](https://github.com/gabrielribeirofsouza/back-end-systemBarber/raw/main/systemBarber%20-%20MODELO%20LOGICO.pdf)
 
 
 ## ⚙️ Tecnologias Utilizadas
