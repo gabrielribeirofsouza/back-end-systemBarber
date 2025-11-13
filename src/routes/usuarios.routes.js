@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const pool = require('../db');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 
 router.get('/', async (req,res) => {
   const [rows] = await pool.query('SELECT id_usuario, nome_usuario, email_usuario, telefone_usuario FROM usuario');
