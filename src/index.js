@@ -2,6 +2,12 @@ const express = require('express');
 const cors = require('cors');
 require('dotenv').config();
 
+
+console.log('DB_HOST:', process.env.DB_HOST);
+console.log('DB_USER:', process.env.DB_USER);
+console.log('DB_NAME:', process.env.DB_NAME);
+
+const pool = require('./db');
 const clientesRoutes = require('./routes/clientes.routes');
 const produtosRoutes = require('./routes/produtos.routes');
 const servicosRoutes = require('./routes/servicos.routes');
@@ -23,6 +29,13 @@ app.use('/api/agendamentos', agendamentosRoutes);
 app.use('/api/horarios', horariosRoutes);
 
 app.get('/api/health', (req,res)=> res.json({ok:true}));
+
+pool.getConnection()
+  .then(() => console.log(' Conexão com MySQL bem-sucedida!'))
+  .catch(err => {
+    console.error(' Erro ao conectar no MySQL:');
+    console.error(err);
+  });
 
 const PORT = process.env.PORT || 4000;
 app.listen(PORT, ()=> console.log(`Server running on port ${PORT}`));
