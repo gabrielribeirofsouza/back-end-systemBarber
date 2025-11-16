@@ -1,9 +1,10 @@
 const mysql = require('mysql2/promise');
 
-// Função para criar pool e testar a conexão
-async function createPool() {
+let pool; 
+
+async function init() {
   try {
-    const pool = mysql.createPool({
+    pool = mysql.createPool({
       host: process.env.DB_HOST,
       user: process.env.DB_USER,
       password: process.env.DB_PASSWORD,
@@ -14,17 +15,16 @@ async function createPool() {
       queueLimit: 0
     });
 
-    // Teste de conexão
-    const connection = await pool.getConnection();
+    const conn = await pool.getConnection();
     console.log(' Conexão com MySQL bem-sucedida!');
-    connection.release();
+    conn.release();
 
     return pool;
   } catch (err) {
-    console.error(' Erro ao conectar no MySQL:');
+    console.error('❌ Erro ao conectar no MySQL:');
     console.error(err);
-    process.exit(1); // encerra o container para o Railway saber que o deploy falhou
+    process.exit(1);
   }
 }
 
-module.exports = createPool();
+module.exports = { pool, init };
