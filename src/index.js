@@ -17,7 +17,14 @@ const horariosRoutes = require('./routes/horarios.routes');
 const authRoutes = require('./routes/auth.routes');
 
 const app = express();
-app.use(cors({ origin: true }));
+app.use(cors({
+  origin: [
+    "https://barber-system-rosy.vercel.app",
+    "http://localhost:5173"
+  ],
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  credentials: true
+}));
 app.use(express.json());
 
 app.use((req, res, next) => {
