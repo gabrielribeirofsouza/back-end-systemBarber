@@ -53,8 +53,8 @@ app.use('/api/horarios', horariosRoutes);
 
 app.get('/api/health', (req, res) => res.json({ ok: true }));
 
+const PORT = process.env.PORT || 8080;
 init().then(() => {
-  const PORT = process.env.PORT || 8080;
   app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
   });
