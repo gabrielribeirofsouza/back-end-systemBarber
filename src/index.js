@@ -17,14 +17,25 @@ const horariosRoutes = require('./routes/horarios.routes');
 const authRoutes = require('./routes/auth.routes');
 
 const app = express();
+const allowedOrigins = [
+  "https://barber-system-rosy.vercel.app",
+  "http://localhost:5173"
+];
+
 app.use(cors({
-  origin: [
-    "https://barber-system-rosy.vercel.app",
-    "http://localhost:5173"
-  ],
-  methods: ["GET", "POST", "PUT", "DELETE"],
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+  methods: "GET,POST,PUT,DELETE,PATCH,OPTIONS",
+  allowedHeaders: "Content-Type,Authorization",
   credentials: true
 }));
+
+app.options("*", cors());
 app.use(express.json());
 
 app.use((req, res, next) => {
