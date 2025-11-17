@@ -35,7 +35,7 @@ router.delete('/:id', async (req, res) => {
   const pool = getPool();
   
   const id = Number(req.params.id);
-  console.log("🧠 ID recebido para exclusão:", id);
+  
 
   if (!Number.isInteger(id) || id <= 0) {
     return res.status(400).json({ error: 'ID inválido' });

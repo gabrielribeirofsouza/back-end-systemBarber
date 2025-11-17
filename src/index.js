@@ -3,9 +3,7 @@ const cors = require('cors');
 require('dotenv').config();
 const { init, getPool } = require('./db');
 
-console.log('DB_HOST:', process.env.DB_HOST);
-console.log('DB_USER:', process.env.DB_USER);
-console.log('DB_NAME:', process.env.DB_NAME);
+
 
 const clientesRoutes = require('./routes/clientes.routes');
 const produtosRoutes = require('./routes/produtos.routes');
@@ -15,26 +13,26 @@ const agendamentosRoutes = require('./routes/agendamentos.routes');
 const horariosRoutes = require('./routes/horarios.routes');
 const authRoutes = require('./routes/auth.routes');
 
-const app = express();
 
-app.use(cors({
-  origin: "https://barber-system-rosy.vercel.app",
-  methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
-  allowedHeaders: ["Content-Type", "Authorization"],
-  credentials: true
-}));
+async function startServer() {
+  await init(); // Inicializa pool ANTES de carregar rotas
 
-app.options("*", cors());
-app.use(express.json());
+  const app = express();
+  app.use(cors({
+    origin: "https://barber-system-rosy.vercel.app",
+    methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+    credentials: true
+  }));
+  
+  app.use(express.json());
 
-// Middleware para adicionar o pool às requisições
+  // Middleware para adicionar o pool às requisições
 app.use((req, res, next) => {
   req.pool = getPool();
   next();
 });
-
-async function startServer() {
-  await init(); // Inicializa pool ANTES de carregar rotas
+  
 
   app.use('/api/auth', authRoutes);
   app.use('/api/clientes', clientesRoutes);

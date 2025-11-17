@@ -29,7 +29,7 @@ async function init() {
 }
 
 function getPool() {
-  if (!pool) throw new Error("Pool não inicializado! Chame init() antes.");
+  if (!pool) throw new Error("error");
   return pool;
 }
 
