@@ -1,6 +1,6 @@
-const mysql = require('mysql2/promise');
+const mysql = require("mysql2/promise");
 
-let pool; 
+let pool;
 
 async function init() {
   try {
@@ -13,19 +13,24 @@ async function init() {
       waitForConnections: true,
       connectionLimit: 10,
       queueLimit: 0,
-       connectTimeout: 10000
+      connectTimeout: 10000,
     });
 
     const conn = await pool.getConnection();
-    console.log(' Conexão com MySQL bem-sucedida!');
+    console.log("Conexão com MySQL bem-sucedida!");
     conn.release();
 
     return pool;
   } catch (err) {
-    console.error(' Erro ao conectar no MySQL:');
+    console.error("Erro ao conectar no MySQL:");
     console.error(err);
     process.exit(1);
   }
 }
 
-module.exports = { pool, init };
+function getPool() {
+  if (!pool) throw new Error("Pool não inicializado! Chame init() antes.");
+  return pool;
+}
+
+module.exports = { init, getPool };
