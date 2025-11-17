@@ -2,10 +2,11 @@ const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const { getPool } = require('../db');
 
 router.post('/login', async (req, res) => {
   try {
-    const pool = req.pool; // <-- pega o pool inicializado no middleware
+    const pool = getPool(); // <-- CORRETO
 
     const { email, senha } = req.body;
 
