@@ -27,7 +27,7 @@ router.post('/', async (req, res) => {
     );
 
     res.status(201).json({
-      id: result.insertId,
+      id_servico: result.insertId,
       nome_servico,
       descricao_servico,
       preco_servico,
@@ -41,18 +41,18 @@ router.post('/', async (req, res) => {
 });
 
 // PUT serviço
-router.put('/:id', async (req, res) => {
+router.put('/:id_servico', async (req, res) => {
   try {
     const pool = req.pool;
 
-    const id = Number(req.params.id);
+    const id_servico = Number(req.params.id_servico);
     const { nome_servico, descricao_servico, preco_servico, duracao_servico, status_servico } = req.body;
 
     const [result] = await pool.query(
       `UPDATE servico 
        SET nome_servico=?, descricao_servico=?, preco_servico=?, duracao_servico=?, status_servico=? 
        WHERE id_servico=?`,
-      [nome_servico, descricao_servico, preco_servico, duracao_servico, status_servico, id]
+      [nome_servico, descricao_servico, preco_servico, duracao_servico, status_servico, id_servico]
     );
 
     if (result.affectedRows === 0) {
@@ -67,13 +67,13 @@ router.put('/:id', async (req, res) => {
 });
 
 // DELETE serviço
-router.delete('/:id', async (req, res) => {
+router.delete('/:id_servico', async (req, res) => {
   try {
     const pool = req.pool;
 
-    const id = Number(req.params.id);
+    const id_servico = Number(req.params.id_servico);
 
-    const [result] = await pool.query('DELETE FROM servico WHERE id_servico = ?', [id]);
+    const [result] = await pool.query('DELETE FROM servico WHERE id_servico = ?', [id_servico]);
 
     if (result.affectedRows === 0) {
       return res.status(404).json({ error: 'Serviço não encontrado' });
