@@ -14,7 +14,15 @@ async function createProduto(pool, { nome_produto, estoque_produto, status_produ
      VALUES (?, ?, ?, ?, ?, ?)`,
     [nome_produto, estoque_produto, status_produto, categoria_produto, descricao_produto, preco_produto]
   );
-  return { id: result.insertId };
+  return {
+  id_produto: result.insertId,
+  nome_produto,
+  estoque_produto,
+  status_produto,
+  categoria_produto,
+  descricao_produto,
+  preco_produto
+};
 }
 
 async function updateProduto(pool, id, fields) {
@@ -30,6 +38,7 @@ async function updateProduto(pool, id, fields) {
   const sql = `UPDATE produto SET ${sets.join(', ')} WHERE id_produto = ?`;
 
   await pool.query(sql, params);
+  return getProdutoById(pool, id);
 }
 
 async function deleteProduto(pool, id) {

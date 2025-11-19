@@ -14,17 +14,18 @@ async function getById(req, res) {
 async function create(req, res) {
   const payload = req.body;
   const { id } = await produtoModel.createProduto(req.pool, payload);
-  res.status(201).json({ id, ...payload });
+  res.status(201).json({ id_produto: id, ...payload });
 }
 
 async function update(req, res) {
   await produtoModel.updateProduto(req.pool, req.params.id, req.body);
-  res.json({ ok: true });
+  const produto = await produtoModel.getProdutoById(req.pool, req.params.id);
+  res.json(produto);
 }
 
 async function remove(req, res) {
   await produtoModel.deleteProduto(req.pool, req.params.id);
-  res.json({ ok: true });
+  res.json({  success: true, message: "Produto removido com sucesso"  });
 }
 
 module.exports = { list, getById, create, update, remove };
