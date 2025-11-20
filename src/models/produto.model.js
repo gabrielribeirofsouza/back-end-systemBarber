@@ -22,7 +22,7 @@ async function createProduto(pool, data) {
     ]
   );
 
-  return result.insertId;
+  return {id_produto: result.insertId};
 }
 
 async function updateProduto(pool, id, fields) {
