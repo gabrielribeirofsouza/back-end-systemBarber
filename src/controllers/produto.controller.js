@@ -13,9 +13,9 @@ async function getById(req, res) {
 
 async function create(req, res) {
   const payload = req.body;
-  const { id } = await produtoModel.createProduto(req.pool, payload);
+  const { id_produto } = await produtoModel.createProduto(req.pool, payload);
   
-  const produto = await produtoModel.getProdutoById(req.pool, id);
+  const produto = await produtoModel.getProdutoById(req.pool, id_produto);
 
   res.status(201).json(produto);
 }
