@@ -14,7 +14,10 @@ async function getById(req, res) {
 async function create(req, res) {
   const payload = req.body;
   const { id } = await produtoModel.createProduto(req.pool, payload);
-  res.status(201).json({ id_produto: id, ...payload });
+  
+  const produto = await produtoModel.getProdutoById(req.pool, id);
+
+  res.status(201).json(produto);
 }
 
 async function update(req, res) {

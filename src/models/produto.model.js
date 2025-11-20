@@ -8,21 +8,21 @@ async function getProdutoById(pool, id) {
   return rows[0];
 }
 
-async function createProduto(pool, { nome_produto, estoque_produto, status_produto, categoria_produto, descricao_produto, preco_produto }) {
+async function createProduto(pool, data) {
   const [result] = await pool.query(
     `INSERT INTO produto (nome_produto, estoque_produto, status_produto, categoria_produto, descricao_produto, preco_produto)
      VALUES (?, ?, ?, ?, ?, ?)`,
-    [nome_produto, estoque_produto, status_produto, categoria_produto, descricao_produto, preco_produto]
+    [
+      data.nome_produto,
+      data.estoque_produto,
+      data.status_produto,
+      data.categoria_produto,
+      data.descricao_produto,
+      data.preco_produto
+    ]
   );
-  return {
-  id_produto: result.insertId,
-  nome_produto,
-  estoque_produto,
-  status_produto,
-  categoria_produto,
-  descricao_produto,
-  preco_produto
-};
+
+  return result.insertId;
 }
 
 async function updateProduto(pool, id, fields) {
